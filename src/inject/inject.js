@@ -33,8 +33,6 @@ chrome.extension.sendMessage({}, function(response) {
 		signInCall(dataString);
 
         var postCall = function (optarr) {
-        	console.log('POSTCALL!')
-        	console.log('heres the token', token);
         	var url_str = 'http://localhost:3000/dashes/16/add-post?link_url='
         	var url_par = url_str + optarr[0]
 	        var request = new XMLHttpRequest();
@@ -43,7 +41,6 @@ chrome.extension.sendMessage({}, function(response) {
 	        request.setRequestHeader('Authorization', token);
 	        request.send();
 			request.onload = function (e) {
-				console.log('loaded')
 			  if (request.readyState === 4) {
 			    if (request.status === 200) {
 			    	var res = JSON.parse(request.responseText);
@@ -84,7 +81,15 @@ chrome.extension.sendMessage({}, function(response) {
 		  	var res = encodeURI(el.src);
 		  	// setup array to store post data
 		  	var options = [res];
+
+
+
+		  	// post the link to butterfli!!!!
 		  	postCall(options);
+		  	
+
+
+
 		  	// prevent default right click menu
 		    e.preventDefault();
 		    toggleMenuOn();
